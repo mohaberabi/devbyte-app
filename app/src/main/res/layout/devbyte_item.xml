@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="video"
+            type="com.example.devbyte.domain.Video" />
+
+
+        <variable
+            name="videoCallback"
+            type="com.example.devbyte.ui.VideCallBack" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp"
+                android:id="@+id/leftWell"
+                android:layout_height="wrap_content" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="8dp"
+                app:layout_constraintGuide_end="8dp"
+                android:id="@+id/rightWell"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/play_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="@+id/leftWell"
+                app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
+                app:srcCompat="@drawable/ic_play_circle_outline_black_48dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@{video.title}"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/video_thumbnail"
+                app:layout_constraintEnd_toStartOf="@+id/rightWell"
+                app:layout_constraintStart_toEndOf="@+id/play_icon"
+                tools:text="Video title" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{video.description}"
+
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/rightWell"
+                app:layout_constraintStart_toStartOf="@+id/leftWell"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/video_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                app:setImageUrl="@{video.thumbnail}"
+                app:layout_constraintDimensionRatio="h,4:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/clickableOverlay"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> videoCallback.onClick(video)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
